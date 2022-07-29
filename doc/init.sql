@@ -1,3 +1,25 @@
+CREATE DATABASE IF NOT EXISTS renren_fast
+    DEFAULT CHARACTER SET utf8;
+CREATE DATABASE IF NOT EXISTS oms
+    DEFAULT CHARACTER SET utf8;
+
+CREATE DATABASE IF NOT EXISTS sms
+    DEFAULT CHARACTER SET utf8;
+
+CREATE DATABASE IF NOT EXISTS ums
+    DEFAULT CHARACTER SET utf8;
+
+CREATE DATABASE IF NOT EXISTS `admin`
+    DEFAULT CHARACTER SET utf8;
+
+CREATE DATABASE IF NOT EXISTS wms
+    DEFAULT CHARACTER SET utf8;
+
+CREATE DATABASE IF NOT EXISTS pms
+    DEFAULT CHARACTER SET utf8;
+
+use oms;
+
 drop table if exists oms_order;
 
 drop table if exists oms_order_item;
@@ -220,6 +242,7 @@ create table oms_refund_info
 
 alter table oms_refund_info comment '退款信息';
 
+use  sms;
 
 drop table if exists sms_coupon;
 
@@ -514,6 +537,8 @@ create table sms_spu_bounds
 
 alter table sms_spu_bounds comment '商品spu积分设置';
 
+use ums;
+
 drop table if exists ums_growth_change_history;
 
 drop table if exists ums_integration_change_history;
@@ -749,6 +774,7 @@ insert  into `sys_menu`(`menu_id`,`parent_id`,`name`,`url`,`perms`,`type`,`icon`
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+use wms;
 
 drop table if exists wms_purchase;
 
@@ -866,6 +892,7 @@ create table wms_ware_sku
 
 alter table wms_ware_sku comment '商品库存';
 
+use pms;
 
 drop table if exists pms_attr;
 
