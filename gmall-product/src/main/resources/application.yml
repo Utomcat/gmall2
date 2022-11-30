@@ -1,0 +1,22 @@
+# 设置服务启动端口
+server:
+  port: 8084
+
+# 配置数据源
+spring:
+  application:
+    name: pms
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3307/pms?useUnicode=true&characterEncoding=utf8&useSSL=true
+    username: user
+    password: 123456
+    hikari:
+      connection-test-query: SELECT 1
+
+# mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto

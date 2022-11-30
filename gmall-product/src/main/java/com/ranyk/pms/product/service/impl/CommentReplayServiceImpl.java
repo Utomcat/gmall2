@@ -1,29 +1,22 @@
 package com.ranyk.pms.product.service.impl;
 
-import org.springframework.stereotype.Service;
-import java.util.Map;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
+
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ranyk.common.utils.PageUtils;
-import com.ranyk.common.utils.Query;
-
-import com.ranyk.pms.product.dao.CommentReplayDao;
-import com.ranyk.pms.product.entity.CommentReplayEntity;
+import com.ranyk.pms.product.dao.CommentReplayMapper;
+import com.ranyk.pms.product.entity.CommentReplay;
 import com.ranyk.pms.product.service.CommentReplayService;
+import org.springframework.stereotype.Service;
 
-
-@Service("commentReplayService")
-public class CommentReplayServiceImpl extends ServiceImpl<CommentReplayDao, CommentReplayEntity> implements CommentReplayService {
-
-    @Override
-    public PageUtils queryPage(Map<String, Object> params) {
-        IPage<CommentReplayEntity> page = this.page(
-                new Query<CommentReplayEntity>().getPage(params),
-                new QueryWrapper<CommentReplayEntity>()
-        );
-
-        return new PageUtils(page);
-    }
+/**
+* @author ranyk
+* @description: 针对表【pms_comment_replay(商品评价回复关系)】的数据库操作Service实现
+* @date: 2022-11-30 18:57:57
+*/
+@Service
+public class CommentReplayServiceImpl extends ServiceImpl<CommentReplayMapper, CommentReplay> implements CommentReplayService {
 
 }
+
+
+
+

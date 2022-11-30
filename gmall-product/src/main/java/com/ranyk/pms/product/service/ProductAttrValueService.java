@@ -1,20 +1,13 @@
 package com.ranyk.pms.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ranyk.common.utils.PageUtils;
-import com.ranyk.pms.product.entity.ProductAttrValueEntity;
-
-import java.util.Map;
+import com.ranyk.pms.product.entity.ProductAttrValue;
 
 /**
- * spu属性值
- *
- * @author ranYk
- * @email ranyikang@gmail.com
- * @date 2022-07-03 19:00:35
- */
-public interface ProductAttrValueService extends IService<ProductAttrValueEntity> {
+* @author ranyk
+* @description: 针对表【pms_product_attr_value(spu属性值)】的数据库操作Service
+* @date:  2022-11-30 18:57:57
+*/
+public interface ProductAttrValueService extends IService<ProductAttrValue> {
 
-    PageUtils queryPage(Map<String, Object> params);
 }
-

@@ -896,7 +896,7 @@ use pms;
 
 drop table if exists pms_attr;
 
-drop table if exists pms_attr_attrgroup_relation;
+drop table if exists pms_attr_attr_group_relation;
 
 drop table if exists pms_attr_group;
 
@@ -955,7 +955,7 @@ create table pms_attr_attrgroup_relation
     primary key (id)
 );
 
-alter table pms_attr_attrgroup_relation comment '属性&属性分组关联';
+alter table pms_attr_attr_group_relation comment '属性&属性分组关联';
 
 /*==============================================================*/
 /* Table: pms_attr_group                                        */

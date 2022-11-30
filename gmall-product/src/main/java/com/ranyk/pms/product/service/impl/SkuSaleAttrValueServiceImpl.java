@@ -1,29 +1,21 @@
 package com.ranyk.pms.product.service.impl;
 
-import org.springframework.stereotype.Service;
-import java.util.Map;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ranyk.common.utils.PageUtils;
-import com.ranyk.common.utils.Query;
-
-import com.ranyk.pms.product.dao.SkuSaleAttrValueDao;
-import com.ranyk.pms.product.entity.SkuSaleAttrValueEntity;
+import com.ranyk.pms.product.entity.SkuSaleAttrValue;
 import com.ranyk.pms.product.service.SkuSaleAttrValueService;
+import com.ranyk.pms.product.dao.SkuSaleAttrValueMapper;
+import org.springframework.stereotype.Service;
 
-
-@Service("skuSaleAttrValueService")
-public class SkuSaleAttrValueServiceImpl extends ServiceImpl<SkuSaleAttrValueDao, SkuSaleAttrValueEntity> implements SkuSaleAttrValueService {
-
-    @Override
-    public PageUtils queryPage(Map<String, Object> params) {
-        IPage<SkuSaleAttrValueEntity> page = this.page(
-                new Query<SkuSaleAttrValueEntity>().getPage(params),
-                new QueryWrapper<SkuSaleAttrValueEntity>()
-        );
-
-        return new PageUtils(page);
-    }
+/**
+* @author ranyk
+* @description 针对表【pms_sku_sale_attr_value(sku销售属性&值)】的数据库操作Service实现
+* @createDate 2022-11-30 18:57:57
+*/
+@Service
+public class SkuSaleAttrValueServiceImpl extends ServiceImpl<SkuSaleAttrValueMapper, SkuSaleAttrValue> implements SkuSaleAttrValueService{
 
 }
+
+
+
+

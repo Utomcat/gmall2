@@ -1,20 +1,13 @@
 package com.ranyk.pms.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ranyk.common.utils.PageUtils;
-import com.ranyk.pms.product.entity.SpuInfoEntity;
-
-import java.util.Map;
+import com.ranyk.pms.product.entity.SpuInfo;
 
 /**
- * spu信息
- *
- * @author ranYk
- * @email ranyikang@gmail.com
- * @date 2022-07-03 19:00:35
- */
-public interface SpuInfoService extends IService<SpuInfoEntity> {
+* @author ranyk
+* @description: 针对表【pms_spu_info(spu信息)】的数据库操作Service
+* @date: 2022-11-30 18:57:57
+*/
+public interface SpuInfoService extends IService<SpuInfo> {
 
-    PageUtils queryPage(Map<String, Object> params);
 }
-

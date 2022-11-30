@@ -1,20 +1,15 @@
 package com.ranyk.pms.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.ranyk.common.utils.PageUtils;
-import com.ranyk.pms.product.entity.BrandEntity;
-
-import java.util.Map;
+import com.ranyk.pms.product.entity.Brand;
 
 /**
- * 品牌
+ * CLASS_NAME: BrandService.java <br/>
  *
- * @author ranYk
- * @email ranyikang@gmail.com
- * @date 2022-07-03 19:00:35
+ * @author ranyk           <br/>
+ * @version V1.0           <br/>
+ * @description: 品牌Service接口  <br/>
+ * @date: 2022-11-30 <br/>
  */
-public interface BrandService extends IService<BrandEntity> {
-
-    PageUtils queryPage(Map<String, Object> params);
+public interface BrandService extends IService<Brand> {
 }
-

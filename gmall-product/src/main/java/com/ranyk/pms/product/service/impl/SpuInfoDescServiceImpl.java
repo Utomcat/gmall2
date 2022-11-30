@@ -1,29 +1,21 @@
 package com.ranyk.pms.product.service.impl;
 
-import org.springframework.stereotype.Service;
-import java.util.Map;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ranyk.common.utils.PageUtils;
-import com.ranyk.common.utils.Query;
-
-import com.ranyk.pms.product.dao.SpuInfoDescDao;
-import com.ranyk.pms.product.entity.SpuInfoDescEntity;
+import com.ranyk.pms.product.entity.SpuInfoDesc;
 import com.ranyk.pms.product.service.SpuInfoDescService;
+import com.ranyk.pms.product.dao.SpuInfoDescMapper;
+import org.springframework.stereotype.Service;
 
-
-@Service("spuInfoDescService")
-public class SpuInfoDescServiceImpl extends ServiceImpl<SpuInfoDescDao, SpuInfoDescEntity> implements SpuInfoDescService {
-
-    @Override
-    public PageUtils queryPage(Map<String, Object> params) {
-        IPage<SpuInfoDescEntity> page = this.page(
-                new Query<SpuInfoDescEntity>().getPage(params),
-                new QueryWrapper<SpuInfoDescEntity>()
-        );
-
-        return new PageUtils(page);
-    }
+/**
+* @author ranyk
+* @description 针对表【pms_spu_info_desc(spu信息介绍)】的数据库操作Service实现
+* @createDate 2022-11-30 18:57:57
+*/
+@Service
+public class SpuInfoDescServiceImpl extends ServiceImpl<SpuInfoDescMapper, SpuInfoDesc> implements SpuInfoDescService{
 
 }
+
+
+
+

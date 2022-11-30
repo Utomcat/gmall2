@@ -1,20 +1,14 @@
 package com.ranyk.pms.product.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.ranyk.common.utils.PageUtils;
-import com.ranyk.pms.product.entity.AttrEntity;
 
-import java.util.Map;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.ranyk.pms.product.entity.Attr;
 
 /**
- * 商品属性
- *
- * @author ranYk
- * @email ranyikang@gmail.com
- * @date 2022-07-03 19:00:35
- */
-public interface AttrService extends IService<AttrEntity> {
+* @author ranyk
+* @description: 针对表【pms_attr(商品属性)】的数据库操作Service
+* @date:  2022-11-30 18:57:57
+*/
+public interface AttrService extends IService<Attr> {
 
-    PageUtils queryPage(Map<String, Object> params);
 }
-

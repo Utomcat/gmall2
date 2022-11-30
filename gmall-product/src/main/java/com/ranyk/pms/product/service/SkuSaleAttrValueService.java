@@ -1,20 +1,14 @@
 package com.ranyk.pms.product.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.ranyk.common.utils.PageUtils;
-import com.ranyk.pms.product.entity.SkuSaleAttrValueEntity;
 
-import java.util.Map;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.ranyk.pms.product.entity.SkuSaleAttrValue;
 
 /**
- * sku销售属性&值
- *
- * @author ranYk
- * @email ranyikang@gmail.com
- * @date 2022-07-03 19:00:35
- */
-public interface SkuSaleAttrValueService extends IService<SkuSaleAttrValueEntity> {
+* @author ranyk
+* @description: 针对表【pms_sku_sale_attr_value(sku销售属性&值)】的数据库操作Service
+* @date:  2022-11-30 18:57:57
+*/
+public interface SkuSaleAttrValueService extends IService<SkuSaleAttrValue> {
 
-    PageUtils queryPage(Map<String, Object> params);
 }
-

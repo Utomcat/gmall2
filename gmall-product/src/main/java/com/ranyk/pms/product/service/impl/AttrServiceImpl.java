@@ -1,29 +1,21 @@
 package com.ranyk.pms.product.service.impl;
 
-import org.springframework.stereotype.Service;
-import java.util.Map;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ranyk.common.utils.PageUtils;
-import com.ranyk.common.utils.Query;
-
-import com.ranyk.pms.product.dao.AttrDao;
-import com.ranyk.pms.product.entity.AttrEntity;
+import com.ranyk.pms.product.dao.AttrMapper;
+import com.ranyk.pms.product.entity.Attr;
 import com.ranyk.pms.product.service.AttrService;
+import org.springframework.stereotype.Service;
 
-
-@Service("attrService")
-public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements AttrService {
-
-    @Override
-    public PageUtils queryPage(Map<String, Object> params) {
-        IPage<AttrEntity> page = this.page(
-                new Query<AttrEntity>().getPage(params),
-                new QueryWrapper<AttrEntity>()
-        );
-
-        return new PageUtils(page);
-    }
+/**
+* @author ranyk
+* @description: 针对表【pms_attr(商品属性)】的数据库操作Service实现
+* @date: 2022-11-30 18:57:57
+*/
+@Service
+public class AttrServiceImpl extends ServiceImpl<AttrMapper, Attr> implements AttrService {
 
 }
+
+
+
+

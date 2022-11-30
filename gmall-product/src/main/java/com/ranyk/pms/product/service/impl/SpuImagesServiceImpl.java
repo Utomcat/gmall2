@@ -1,29 +1,21 @@
 package com.ranyk.pms.product.service.impl;
 
-import org.springframework.stereotype.Service;
-import java.util.Map;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ranyk.common.utils.PageUtils;
-import com.ranyk.common.utils.Query;
-
-import com.ranyk.pms.product.dao.SpuImagesDao;
-import com.ranyk.pms.product.entity.SpuImagesEntity;
+import com.ranyk.pms.product.entity.SpuImages;
 import com.ranyk.pms.product.service.SpuImagesService;
+import com.ranyk.pms.product.dao.SpuImagesMapper;
+import org.springframework.stereotype.Service;
 
-
-@Service("spuImagesService")
-public class SpuImagesServiceImpl extends ServiceImpl<SpuImagesDao, SpuImagesEntity> implements SpuImagesService {
-
-    @Override
-    public PageUtils queryPage(Map<String, Object> params) {
-        IPage<SpuImagesEntity> page = this.page(
-                new Query<SpuImagesEntity>().getPage(params),
-                new QueryWrapper<SpuImagesEntity>()
-        );
-
-        return new PageUtils(page);
-    }
+/**
+* @author ranyk
+* @description: 针对表【pms_spu_images(spu图片)】的数据库操作Service实现
+* @date: 2022-11-30 18:57:57
+*/
+@Service
+public class SpuImagesServiceImpl extends ServiceImpl<SpuImagesMapper, SpuImages> implements SpuImagesService{
 
 }
+
+
+
+

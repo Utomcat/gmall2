@@ -1,29 +1,21 @@
 package com.ranyk.pms.product.service.impl;
 
-import org.springframework.stereotype.Service;
-import java.util.Map;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ranyk.common.utils.PageUtils;
-import com.ranyk.common.utils.Query;
-
-import com.ranyk.pms.product.dao.SpuInfoDao;
-import com.ranyk.pms.product.entity.SpuInfoEntity;
+import com.ranyk.pms.product.entity.SpuInfo;
 import com.ranyk.pms.product.service.SpuInfoService;
+import com.ranyk.pms.product.dao.SpuInfoMapper;
+import org.springframework.stereotype.Service;
 
-
-@Service("spuInfoService")
-public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> implements SpuInfoService {
-
-    @Override
-    public PageUtils queryPage(Map<String, Object> params) {
-        IPage<SpuInfoEntity> page = this.page(
-                new Query<SpuInfoEntity>().getPage(params),
-                new QueryWrapper<SpuInfoEntity>()
-        );
-
-        return new PageUtils(page);
-    }
+/**
+* @author ranyk
+* @description: 针对表【pms_spu_info(spu信息)】的数据库操作Service实现
+* @date: 2022-11-30 18:57:57
+*/
+@Service
+public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoMapper, SpuInfo> implements SpuInfoService{
 
 }
+
+
+
+
