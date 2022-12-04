@@ -2,8 +2,12 @@ package com.ranyk.ums.member.controller;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Objects;
 
+import com.ranyk.ums.member.feign.CouponFeign;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,14 +25,37 @@ import com.ranyk.common.utils.R;
  * 会员
  *
  * @author ranYk
- * @email ranyikang@gmail.com
  * @date 2022-07-29 17:27:34
  */
+@RefreshScope
 @RestController
 @RequestMapping("member/member")
 public class MemberController {
     @Autowired
     private MemberService memberService;
+    @Autowired
+    private CouponFeign couponFeign;
+
+    @Value("${ums.user.name}")
+    private String name;
+    @Value("${ums.user.gender}")
+    private Integer gender;
+
+    @RequestMapping("/getAllMemberInfo")
+    public R getAllMemberInfo(){
+        MemberEntity member = new MemberEntity();
+        member.setUsername("张三");
+        R allCoupon = couponFeign.getAllCoupon();
+        return Objects.requireNonNull(R.ok().put("user", member)).put("coupons",allCoupon.get("coupons"));
+    }
+
+    @RequestMapping("getUser")
+    public R getUser(){
+        MemberEntity member = new MemberEntity();
+        member.setUsername(name);
+        member.setGender(gender);
+        return R.ok().put("user",member);
+    }
 
     /**
      * 列表

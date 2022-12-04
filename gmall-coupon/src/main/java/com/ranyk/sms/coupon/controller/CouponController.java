@@ -1,6 +1,8 @@
 package com.ranyk.sms.coupon.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,6 @@ import com.ranyk.common.utils.R;
  * 优惠券信息
  *
  * @author ranYk
- * @email ranyikang@gmail.com
  * @date 2022-07-29 17:37:28
  */
 @RestController
@@ -29,6 +30,22 @@ import com.ranyk.common.utils.R;
 public class CouponController {
     @Autowired
     private CouponService couponService;
+
+    /**
+     * 模拟获取所有优惠券
+     *
+     * @return 返回请求响应对象 {@link R}
+     */
+    @RequestMapping("getAllCoupon")
+    public R getAllCoupon(){
+        List<CouponEntity> coupons = new ArrayList<>(10);
+        for (int i = 1; i < 10; i++) {
+            CouponEntity coupon = new CouponEntity();
+            coupon.setCouponName("满"+i+"减 0."+i);
+            coupons.add(coupon);
+        }
+        return R.ok().put("coupons",coupons);
+    }
 
     /**
      * 列表

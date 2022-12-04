@@ -1,0 +1,44 @@
+# 设置服务启动端口
+server:
+  port: 8087
+
+# 配置数据源
+spring:
+  # 应用配置
+  application:
+    # 配置应用名称
+    name: oms
+  # 数据源配置
+  datasource:
+    # 数据驱动
+    driverClassName: com.mysql.cj.jdbc.Driver
+    # 数据库地址
+    url: jdbc:mysql://127.0.0.1:3307/oms?useUnicode=true&characterEncoding=utf8&useSSL=true
+    # 数据库连接用户名
+    username: user
+    # 数据连接密码
+    password: 123456
+    # Hikari 连接池配置
+    hikari:
+      # 检测连接
+      connection-test-query: SELECT 1
+  # 微服务配置
+  cloud:
+    # 配置服务注册中心 Nacos 配置
+    nacos:
+      # Nacos 服务发现配置
+      discovery:
+        # 配置 Nacos 服务器地址和端口
+        server-addr: 127.0.0.1:8848
+  # 热部署配置
+  devtools:
+    livereload:
+      #热部署端口
+      port: 35731
+
+# mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
