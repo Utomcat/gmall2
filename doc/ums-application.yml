@@ -1,0 +1,56 @@
+# ums 微服务原配置文件备份
+# 设置服务启动端口
+server:
+  port: 8086
+
+# 配置数据源
+spring:
+  # 应用配置
+  application:
+    # 配置应用名称
+    name: ums
+  # 数据源配置
+  datasource:
+    # 数据驱动
+    driverClassName: com.mysql.cj.jdbc.Driver
+    # 数据库地址
+    url: jdbc:mysql://127.0.0.1:3307/ums?useUnicode=true&characterEncoding=utf8&useSSL=true
+    # 数据库连接用户名
+    username: user
+    # 数据连接密码
+    password: 123456
+    # Hikari 连接池配置
+    hikari:
+      # 检测连接
+      connection-test-query: SELECT 1
+  # 微服务配置
+  cloud:
+    # 配置服务注册中心 Nacos 配置
+    nacos:
+      # Nacos 服务发现配置
+      discovery:
+        # 配置 Nacos 服务器地址和端口
+        server-addr: 127.0.0.1:8848
+      # Nacos 配置中心配置
+      config:
+        # 配置 Nacos 配置中心服务器地址和端口 (此处配置 Nacos 配置服务器不生效)
+        server-addr: localhost:8848
+        # 配置 Nacos 配置中心的配置内容的数据格式,目前仅支持 properties 和 yaml (此处配置 Nacos 配置文件数据格式不生效)
+        file-extension: yaml
+        # 配置 Nacos 配置中心的命名空间(此处配置 Nacos 配置中心命名空间不生效)
+        namespace: dev
+        # 配置 Nacos 配置中心的配置组(此处配置 Nacos 配置中心的配置组不生效)
+        group: ums
+
+  # 热部署配置
+  devtools:
+    livereload:
+      #热部署端口
+      port: 35730
+
+# mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto

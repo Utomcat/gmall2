@@ -2,7 +2,8 @@
 [TOC]
 
 
-> [官方说明文档连接](https://github.com/alibaba/spring-cloud-alibaba/blob/2021.x/spring-cloud-alibaba-examples/nacos-example/nacos-config-example/readme-zh.md)
+> [官方 Nacos 示例说明文档连接](https://github.com/alibaba/spring-cloud-alibaba/blob/2021.x/spring-cloud-alibaba-examples/nacos-example/nacos-config-example/readme-zh.md) <br/>
+> [官方 Nacos 文档](https://nacos.io/zh-cn/docs/what-is-nacos.html) <br/>
 > 本文使用的 `Nacos Server` 版本为 `2.2.0-BETA` , `Nacos Config` 版本为 `2021.0.4.0`
 
 ## 一、功能模块接入 `Nacos Config`
@@ -92,7 +93,8 @@
 >   > 说明: 上图中存在 `ums` 和 `ums.yaml` 两个配置文件,是因为 `Nacos` 配置中心会加载这两个文件的配置,如果没有任意一个,或两者都不存时都会抛 `warning` 
 > ,为避免警告故创建两个配置文件
 > - 如果不先配置项目中使用到的值,则会抛 [异常](#error1)
-> - 如果系统的配置文件和配置中心同时存在相同配置则会优先使用配置中心的值
+> - 如果系统的配置文件和配置中心同时存在相同配置则会优先使用配置中心的值(即优先使用配置中心中的值)
+> - 获取配置值除使用 `@Value` 注解外,还可使用 `@ConfigurationProperties` 等 `Spring Boot` 中从配置文件中获取配置值的任何方式
 
 ## 二、接入异常
 
@@ -124,4 +126,43 @@
 
 ## 三、`Nacos` 配置中心的相关配置管理
 
-### 1）、
+### 1）、命名空间 - `namespace`
+> - 目的: 通过使用命名空间的方式,以达到在 开发、测试、生产、微服务等不同环境中使用不同的配置，从而实现配置隔离
+> - 默认: `public`(保留空间),即在创建配置时不选择所属命名空间的情况下,默认会将创建的配置保存在 `public` 命名空间中
+> - 配置: 在 `bootstrap.properties` 配置文件中,配置 `spring.cloud.nacos.config.namespace=[所使用的命名空间的ID]` 
+> - 注意: 在 `Nacos V2.2.0-BETA` 版本中, `命名空间ID` 可以自定义(在创建命名空间时可自动输入),不自定义时(创建时不输入ID)则会自动生成 
+
+### 2）、配置集
+> 所有配置的集合
+
+### 3）、配置集`ID` - `Data Id`  
+> 类似于 `文件名` - `Data ID` ,每一个配置都有一个配置集 `ID` ( `Data ID` )
+
+### 4）、配置分组 - `Group`  
+> 默认所有的配置集都属于 `DEFAULT_GROUP` 
+
+### 5）、加载多配置集 - `extension-configs`
+> 使用多配置集的情况下需要在 `bootstrap.properties` 配置文件中添加 `extension-configs` 的配置,因 `extension-configs` 为数组结构,因而在配置时需指明对应的下标,如下: 
+> ```properties
+>    # 添加数据源配置,分别指明配置集ID 、 配置分组 、 是否自动刷新配置
+>    spring.cloud.nacos.config.extension-configs[0].dataId=datasource.yaml
+>    spring.cloud.nacos.config.extension-configs[0].group=dev
+>    spring.cloud.nacos.config.extension-configs[0].refresh=true
+>    # 添加mybatis-plus配置,分别指明配置集ID 、 配置分组 、 是否自动刷新配置
+>    spring.cloud.nacos.config.extension-configs[1].dataId=mybatis-plus.yaml
+>    spring.cloud.nacos.config.extension-configs[1].group=dev
+>    spring.cloud.nacos.config.extension-configs[1].refresh=true
+>    # 添加其他配置,分别指明配置集ID 、 配置分组 、 是否自动刷新配置
+>    spring.cloud.nacos.config.extension-configs[2].dataId=other.yaml
+>    spring.cloud.nacos.config.extension-configs[2].group=dev
+>    spring.cloud.nacos.config.extension-configs[2].refresh=true
+>    # 添加开发环境热部署配置,分别指明配置集ID 、 配置分组 、 是否自动刷新配置
+>    spring.cloud.nacos.config.extension-configs[3].dataId=devtools.yaml
+>    spring.cloud.nacos.config.extension-configs[3].group=dev
+>    spring.cloud.nacos.config.extension-configs[3].refresh=true
+> ```
+> <font color="red"><i>注意:</i></font>  
+>   - 因为在 `bootstrap.properties` 配置中指明了 `spring.cloud.nacos.config.file-extension=yaml` 配置,故命名配置集 `ID` 时需要在结尾加上 `.yaml` ,否则不能获取对应配置,会抛出异常
+>   - 除以上配置中指明对应配置的配置组外,仍可以配置 `spring.cloud.nacos.config.group=dev` 代表: 除指定的配置集外,其他配置的配置组均使用 `dev` 配置组的配置
+>   - 在 `Nacos V2.2.0-BETA` 版本中, 多配置集使用 `extension-configs` 配置,而之前使用 `ext-config` 配置,使用时注意使用的版本
+
